@@ -5,6 +5,6 @@ class MainController extends CI_Controller {
 	public function index()
 	{
 		//$this->load->view('welcome_message');
-    echo "<h1> reveal it </h1>";
+    $this->load->view('home.php');
 	}
 }
