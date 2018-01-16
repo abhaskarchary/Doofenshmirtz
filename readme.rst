@@ -15,6 +15,7 @@ TODO
 **************************
 1) Front end
 2) Form Validation
+3) Fix the routes
 
 *************************
 Run Doofenshmirtz.sql to make the database
