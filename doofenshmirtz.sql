@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jan 15, 2018 at 05:42 PM
+-- Generation Time: Jan 16, 2018 at 08:09 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -30,8 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `messages` (
   `id` bigint(20) UNSIGNED NOT NULL,
-  `message` text NOT NULL
+  `message` text NOT NULL,
+  `datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `sender` int(11) NOT NULL,
+  `reciever` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `message`, `datetime`, `sender`, `reciever`) VALUES
+(1, 'hi there', '2018-01-15 23:22:10', 1, 2),
+(2, 'no one', '2018-01-15 23:33:33', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -44,7 +55,7 @@ CREATE TABLE `user` (
   `name` varchar(50) NOT NULL,
   `username` varchar(20) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -52,8 +63,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `name`, `username`, `password`, `date`) VALUES
-(1, 'Sample user', 'sampleuser', '12345678', '2018-01-15'),
-(2, 'Sample User 2', 'sampleuser2', '12345678', '2018-01-15');
+(1, 'Sample user', 'sampleuser', '12345678', '2018-01-15 00:00:00'),
+(2, 'Sample User 2', 'sampleuser2', '12345678', '2018-01-15 00:00:00'),
+(5, 'Satyam Mishra', 'satyammishrax', '123456789', '2018-01-16 12:38:38');
 
 --
 -- Indexes for dumped tables
@@ -81,23 +93,12 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `messages`
---
-ALTER TABLE `messages`
-  ADD CONSTRAINT `from` FOREIGN KEY (`id`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `to` FOREIGN KEY (`id`) REFERENCES `user` (`id`);
-COMMIT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
